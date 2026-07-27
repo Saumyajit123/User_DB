@@ -1,0 +1,626 @@
+{
+  "info": {
+    "_postman_id": "88458924-c850-41ad-a166-ebcc30a742ae",
+    "name": "NodeJS_2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12278856"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Saumyajit\",\r\n    \"email\": \"saumyajit@gmail.com\",\r\n    \"phone\": \"9876543217\",\r\n    \"password\": \"45698523\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3010/api/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3010",
+              "path": [
+                "api",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"saumyajit@gmail.com\",\r\n    \"password\": \"45698523\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3010/api/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3010",
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "dashboard",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3010/api/dashboard",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3010",
+              "path": [
+                "api",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user_DB",
+      "item": [
+        {
+          "name": "user_login",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"saumyajit@gmail.com\",\r\n    \"password\": \"45698523\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3008/api/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user_register",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Abhijit",
+                  "type": "text",
+                  "uuid": "7b4c6da4-5e6d-4772-b400-9a760597e39c"
+                },
+                {
+                  "key": "email",
+                  "value": "abhijit@gmail.com",
+                  "type": "text",
+                  "uuid": "1f2b622f-1ae0-43db-a197-769855d41ad7"
+                },
+                {
+                  "key": "phone",
+                  "value": "1234567890",
+                  "type": "text",
+                  "uuid": "4fac4e20-c5b8-40c3-8f5e-3b871ab29518"
+                },
+                {
+                  "key": "password",
+                  "value": "74196385",
+                  "type": "text",
+                  "uuid": "590eebf4-159f-4d17-b561-e3540228db92"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "08bc7b94-1e3a-4e8a-8a2c-6fb147c45ac1",
+                  "src": "/C:/Users/ARIJIT/OneDrive/Pictures/Saved Pictures/jonatan-pie-h8nxGssjQXs-unsplash.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3008/api/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "api",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create-product",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Lenskart smart glass",
+                  "type": "text",
+                  "uuid": "d887edb0-3726-4ec0-b0f8-685a6244b4b9"
+                },
+                {
+                  "key": "description",
+                  "value": "Phonic blutooth connectivity, calls, voice assistant",
+                  "type": "text",
+                  "uuid": "13c73a7d-b8d8-4c3b-b688-92c167e7086f"
+                },
+                {
+                  "key": "price",
+                  "value": "8000",
+                  "type": "text",
+                  "uuid": "6d8b9478-50fb-41d7-83f7-4d4d27d79af4"
+                },
+                {
+                  "key": "color",
+                  "value": "Red",
+                  "type": "text",
+                  "uuid": "43fb36de-2ea2-4f0c-8bd2-07699a1c2de4"
+                },
+                {
+                  "key": "size",
+                  "value": "Free",
+                  "type": "text",
+                  "uuid": "62fa3196-b488-4b9d-bcf0-b37793b0330d"
+                },
+                {
+                  "key": "isDeleted",
+                  "value": "false",
+                  "type": "text",
+                  "uuid": "c6db5ed3-08f0-4c21-bbf4-c6b3f88d915e"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "2391e469-51c4-476a-80b2-dff790117997",
+                  "src": "/C:/Users/ARIJIT/OneDrive/Pictures/Saved Pictures/linus-mimietz-gvptKmonylk-unsplash.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3008/api/create-product",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "api",
+                "create-product"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_product",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Lenskart smart glass",
+                  "type": "text",
+                  "uuid": "1d4525de-2508-4524-a586-6ba27a07a24b"
+                },
+                {
+                  "key": "description",
+                  "value": "Phonic blutooth connectivity, calls, voice assistant",
+                  "type": "text",
+                  "uuid": "8372cd68-940e-4203-8c99-23f3ceeb4a79"
+                },
+                {
+                  "key": "price",
+                  "value": "6500",
+                  "type": "text",
+                  "uuid": "73c6229b-2c7b-4cb9-85e4-22f9065ca73b"
+                },
+                {
+                  "key": "size",
+                  "value": "Free",
+                  "type": "text",
+                  "uuid": "fd160977-059c-4c26-9fdc-551dcaa04fab"
+                },
+                {
+                  "key": "color",
+                  "value": "Black",
+                  "type": "text",
+                  "uuid": "7b5d9485-c1c3-4893-a569-451f01a738fa"
+                },
+                {
+                  "key": "isDeleted",
+                  "value": "false",
+                  "type": "text",
+                  "uuid": "3f1d2804-0b44-470b-aac7-751ac22b3c05"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "2f7807cd-64c2-4513-ace6-06199eb6e565",
+                  "src": "/C:/Users/ARIJIT/OneDrive/Pictures/Saved Pictures/images.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3008/api/product/update/6a6763ec820a38e2605516f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "api",
+                "product",
+                "update",
+                "6a6763ec820a38e2605516f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3008/api/product/delete/6a67679c23cc9d35213d66df",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3008",
+              "path": [
+                "api",
+                "product",
+                "delete",
+                "6a67679c23cc9d35213d66df"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "create-student Copy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Daya",
+              "type": "text",
+              "uuid": "770ed98d-48e5-46ad-8740-b52981801d33"
+            },
+            {
+              "key": "email",
+              "value": "daya@gmail.com",
+              "type": "text",
+              "uuid": "d86571b6-7223-4dbe-950a-0ac5bbb8566d"
+            },
+            {
+              "key": "phone",
+              "value": "1237894562",
+              "type": "text",
+              "uuid": "1ce055d1-6644-471b-95cc-d664de804f0e"
+            },
+            {
+              "key": "city",
+              "value": "Mumbai",
+              "type": "text",
+              "uuid": "48b9c3f0-854a-479d-a14f-14e59d26d329"
+            },
+            {
+              "key": "state",
+              "value": "Maharashtra",
+              "type": "text",
+              "uuid": "ac98cda1-77ed-47eb-8e67-68f9fa240f21"
+            },
+            {
+              "key": "country",
+              "value": "India",
+              "type": "text",
+              "uuid": "23b9d3bf-43f9-475e-a340-ff9338541ef0"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "uuid": "edce1688-56cd-44d1-bd2b-a2dd221dad9b",
+              "src": "/C:/Users/ARIJIT/OneDrive/Pictures/nature-of-mountains-and-lake-dwnlbpxdjxge2j42.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3010/api/create-student",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3010",
+          "path": [
+            "api",
+            "create-student"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "students Copy",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3010/api/students",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3010",
+          "path": [
+            "api",
+            "students"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "student_by_ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3010/api/student/6a4786d8b67d69eb2b849eaf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3010",
+          "path": [
+            "api",
+            "student",
+            "6a4786d8b67d69eb2b849eaf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update_student",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Pankaj",
+              "type": "text",
+              "uuid": "b86723d2-cdb6-4191-8761-f64610523adc"
+            },
+            {
+              "key": "email",
+              "value": "pankaj@gmail.com",
+              "type": "text",
+              "uuid": "1f08e69b-b325-435b-a139-8792fb6bf162"
+            },
+            {
+              "key": "phone",
+              "value": "1237894589",
+              "type": "text",
+              "uuid": "b020eccc-5e03-4bef-af9c-8b3be96af5b9"
+            },
+            {
+              "key": "city",
+              "value": "Mumbai",
+              "type": "text",
+              "uuid": "ae3f5845-4087-404a-92b3-015c30a19c3c"
+            },
+            {
+              "key": "state",
+              "value": "Maharashtra",
+              "type": "text",
+              "uuid": "4b931576-2879-454a-8f85-bdcb788d6593"
+            },
+            {
+              "key": "country",
+              "value": "India",
+              "type": "text",
+              "uuid": "15487c79-45a0-436c-ace3-5f15b470327e"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "uuid": "e70d2f1e-a843-48df-9fdc-36a2fcaeed1f",
+              "src": "/C:/Users/ARIJIT/OneDrive/Pictures/Saved Pictures/joel-holland-TRhGEGdw-YY-unsplash.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3010/api/student/update/6a5732dd47abbcb0234c29f5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3010",
+          "path": [
+            "api",
+            "student",
+            "update",
+            "6a5732dd47abbcb0234c29f5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete_student",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3010/api/student/delete/6a5731d306878a6e85d4fc7a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3010",
+          "path": [
+            "api",
+            "student",
+            "delete",
+            "6a5731d306878a6e85d4fc7a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "search_student",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3010/api/student/search/Swarnendu",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3010",
+          "path": [
+            "api",
+            "student",
+            "search",
+            "Swarnendu"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "filter_student",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3010/api/student/filter?city=chennai",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3010",
+          "path": [
+            "api",
+            "student",
+            "filter"
+          ],
+          "query": [
+            {
+              "key": "city",
+              "value": "chennai"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
