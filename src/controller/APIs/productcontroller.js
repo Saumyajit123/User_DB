@@ -4,7 +4,8 @@ const uploadImage = require("../../utils/cloudinaryupload");
 const deleteImage = require("../../utils/cloudinarydelete");
 
 class ProductController {
-  // CREATE:
+
+  // CREATE PRODUCT:
   async createproduct(req, res) {
     try {
       const { name, description, price, color, size, isDeleted } = req.body;
@@ -75,7 +76,33 @@ class ProductController {
     }
   }
 
-  // FOR POST DATA:
+  // GET PRODUCT BY ID:
+  async getproductById(req, res) {
+    try {
+      const id = req.params.id;
+      const productData = await Product.findById(id);
+
+      if (!productData) {
+        return res.status(statuscode.NOT_FOUND).json({
+          status: false,
+          message: "No product found",
+          data: null,
+        });
+      }
+
+      return res.status(statuscode.OK).json({
+        status: true,
+        data: productData,
+      });
+    } catch (error) {
+      return res.status(statuscode.SERVER_ERROR).json({
+        status: false,
+        message: error.message,
+      });
+    }
+  }
+
+  // GET ALL PRODUCTS:
   async getallProducts(req, res) {
     try {
       const productData = await Product.find();
@@ -102,7 +129,7 @@ class ProductController {
     }
   }
 
-  // UPDATE DATA:
+  // UPDATE PRODUCT:
   async updateProduct(req, res) {
     try {
       const id = req.params.id;
@@ -161,7 +188,7 @@ class ProductController {
     }
   }
 
-  // DELETE DATA:
+  // DELETE PRODUCT:
   async deleteProduct(req, res) {
     try {
       const id = req.params.id;
@@ -193,6 +220,7 @@ class ProductController {
     }
   }
 
+  // SODT DELETE PRODUCT:
   async softDeleteProduct(req, res) {
     try {
       const id = req.params.id;
@@ -213,7 +241,7 @@ class ProductController {
         });
       }
 
-      await Product.findByIdAndUpdate(
+      const softdeleteProduct = await Product.findByIdAndUpdate(
         id,
         {
           isDeleted: true,
@@ -223,7 +251,49 @@ class ProductController {
 
       return res.status(statuscode.OK).json({
         status: true,
-        message: "Product deleted successfully",
+        message: "Product soft deleted successfully",
+      });
+    } catch (error) {
+      return res.status(statuscode.SERVER_ERROR).json({
+        status: false,
+        message: error.message,
+      });
+    }
+  }
+
+  // RESTORE PRODUCT:
+  async restoreProduct(req, res) {
+    try {
+      const id = req.params.id;
+
+      const product = await Product.findById(id);
+
+      if (!product) {
+        return res.status(statuscode.NOT_FOUND).json({
+          status: false,
+          message: "Product not found",
+        });
+      }
+
+      if (product.isDeleted) {
+        return res.status(statuscode.BAD_REQUEST).json({
+          status: false,
+          message: "Product is already deleted",
+        });
+      }
+
+      const restoredProduct = await Product.findByIdAndUpdate(
+        id,
+        {
+          isDeleted: false,
+        },
+        { new: true },
+      );
+
+      return res.status(statuscode.OK).json({
+        status: true,
+        message: "Product restored successfully",
+        data: restoredProduct,
       });
     } catch (error) {
       return res.status(statuscode.SERVER_ERROR).json({

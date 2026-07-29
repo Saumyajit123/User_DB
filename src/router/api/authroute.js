@@ -24,7 +24,7 @@ router.put(
   authController.updateUser,
 );
 
-router.delete("/user/delete/:id", authController.deleteUser);
+router.delete("/user/delete/:id", AuthMiddleware.verifyToken, authController.deleteUser);
 router.get("/dashboard", AuthMiddleware.verifyToken, authController.dashboard);
 
 module.exports = router;

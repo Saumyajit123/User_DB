@@ -25,7 +25,8 @@ const productSchema = new Schema(
       trim: true,
     },
     size: {
-      type: Array,
+      type: String,
+      enum: ["s", "m", "l", "xl", "xxl", "free"],
       required: [true, "Size is required"],
       trim: true,
     },
