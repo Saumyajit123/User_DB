@@ -24,6 +24,13 @@ router.put(
   authController.updateUser,
 );
 
+router.put(
+  "/user/change-password",
+  AuthMiddleware.verifyToken,
+  Validation.validate(UserSchemaValidation.changePassword),
+  authController.changePassword
+);
+
 router.delete("/user/delete/:id", AuthMiddleware.verifyToken, authController.deleteUser);
 router.get("/dashboard", AuthMiddleware.verifyToken, authController.dashboard);
 

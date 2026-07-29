@@ -91,7 +91,7 @@ class AuthController {
         { expiresIn: "1d" },
       );
 
-      return res.status(StatusCode.BAD_REQUEST).json({
+      return res.status(StatusCode.OK).json({
         success: true,
         message: "Login Successful",
         data: {
@@ -102,6 +102,76 @@ class AuthController {
           role: user.role,
         },
         token: token,
+      });
+    } catch (error) {
+      return res.status(StatusCode.SERVER_ERROR).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
+
+  async changePassword(req, res) {
+    try {
+      // user id from JWT
+      const id = req.user.id;
+
+      const { oldPassword, newPassword, confirmPassword } = req.body;
+
+      if (!oldPassword || !newPassword || !confirmPassword) {
+        return res.status(StatusCode.BAD_REQUEST).json({
+          success: false,
+          message: "All fields are required",
+        });
+      }
+
+      const user = await User.findById(id);
+
+      if (!user) {
+        return res.status(StatusCode.NOT_FOUND).json({
+          success: false,
+          message: "User not found",
+        });
+      }
+
+      // verify old password
+      const isMatch = await bcryptjs.compare(oldPassword, user.password);
+
+      if (!isMatch) {
+        return res.status(StatusCode.BAD_REQUEST).json({
+          success: false,
+          message: "Incorrect password",
+        });
+      }
+
+      // compare new and confirm password
+      if (newPassword !== confirmPassword) {
+        return res.status(StatusCode.BAD_REQUEST).json({
+          success: false,
+          message: "Password does not match",
+        });
+      }
+
+      // prevent using same password
+      const isSamePassword = await bcryptjs.compare(newPassword, user.password);
+
+      if (isSamePassword) {
+        return res.status(StatusCode.BAD_REQUEST).json({
+          success: false,
+          message: "New password cannot be the same as old password",
+        });
+      }
+
+      // hash password
+      const hashedPassword = await bcryptjs.hash(newPassword, 10);
+
+      user.password = hashedPassword;
+
+      await user.save();
+
+      return res.status(StatusCode.OK).json({
+        success: true,
+        message: "Password updated successfully",
       });
     } catch (error) {
       return res.status(StatusCode.SERVER_ERROR).json({
@@ -200,7 +270,7 @@ class AuthController {
     try {
       return res.status(StatusCode.OK).json({
         success: true,
-        message: "welcome to dashboard",
+        message: "Welcome to dashboard",
         user: req.user,
       });
     } catch (error) {

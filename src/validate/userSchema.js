@@ -38,6 +38,28 @@ class UserSchemaValidation {
       "any.required": "Password is required",
     }),
   });
+
+  static changePassword = Joi.object({
+    oldPassword: Joi.string().required().messages({
+      "string.empty": "Old password is required",
+      "any.required": "Old password is required",
+    }),
+
+    newPassword: Joi.string().min(6).required().messages({
+      "string.empty": "New password is required",
+      "string.min": "Password must be at least 6 characters",
+      "any.required": "New password is required",
+    }),
+
+    confirmPassword: Joi.string()
+      .required()
+      .valid(Joi.ref("newPassword"))
+      .messages({
+        "any.only": "Confirm password must match new password",
+        "string.empty": "Confirm password is required",
+        "any.required": "Confirm password is required",
+      }),
+  });
 }
 
 module.exports = UserSchemaValidation;
