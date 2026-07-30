@@ -220,7 +220,7 @@ class ProductController {
     }
   }
 
-  // SODT DELETE PRODUCT:
+  // SOFT DELETE PRODUCT:
   async softDeleteProduct(req, res) {
     try {
       const id = req.params.id;
@@ -275,10 +275,10 @@ class ProductController {
         });
       }
 
-      if (product.isDeleted) {
+      if (!product.isDeleted) {
         return res.status(statuscode.BAD_REQUEST).json({
           status: false,
-          message: "Product is already deleted",
+          message: "Product is not deleted",
         });
       }
 
